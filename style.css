@@ -1,0 +1,1444 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+/* ================================
+   ROOT VARIABLES
+================================ */
+
+:root {
+    --bg: #f5f5f2;
+    --card: rgba(255, 255, 255, 0.82);
+    --card-solid: #ffffff;
+
+    --text: #171717;
+    --muted: #777777;
+
+    --border: #e8e8e3;
+
+    --black: #171717;
+    --white: #ffffff;
+
+    --green: #b7f34a;
+    --green-dark: #78a928;
+
+    --purple: #d8c7ff;
+    --pink: #ffc9dd;
+    --blue: #c8e8ff;
+    --orange: #ffd49b;
+    --red: #ffb5b5;
+
+    --soft: #f7f7f4;
+
+    --shadow: 0 15px 45px rgba(0, 0, 0, 0.06);
+
+    --radius-lg: 30px;
+    --radius-md: 25px;
+    --radius-sm: 14px;
+
+    --transition: 0.25s ease;
+}
+
+
+/* ================================
+   RESET
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: "DM Sans", sans-serif;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            #e9ffd0 0,
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            #e7dbff 0,
+            transparent 25%
+        ),
+        var(--bg);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button,
+input,
+select {
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* ================================
+   APP
+================================ */
+
+.app {
+    width: min(1400px, 94%);
+
+    margin: auto;
+
+    padding: 25px 0 50px;
+}
+
+
+/* ================================
+   NAVBAR
+================================ */
+
+nav {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 35px;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 1.4rem;
+
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+}
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    background: var(--green);
+
+    border-radius: 13px;
+
+    font-size: 1.35rem;
+
+    box-shadow:
+        5px 5px 0 var(--black);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(-7deg) translateY(-2px);
+
+    box-shadow:
+        7px 7px 0 var(--black);
+}
+
+
+/* NAV BUTTONS */
+
+.nav-right {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.icon-btn {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 1px solid var(--border);
+
+    background: rgba(255, 255, 255, 0.7);
+
+    border-radius: 50%;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.icon-btn:hover {
+    transform:
+        rotate(8deg)
+        scale(1.05);
+
+    background: var(--white);
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+    display: grid;
+
+    grid-template-columns:
+        1.4fr
+        0.8fr;
+
+    gap: 22px;
+
+    margin-bottom: 22px;
+}
+
+
+/* MAIN HERO CARD */
+
+.hero-card {
+    position: relative;
+
+    min-height: 250px;
+
+    overflow: hidden;
+
+    padding: 35px;
+
+    color: white;
+
+    background: var(--black);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow);
+}
+
+.hero-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 240px;
+    height: 240px;
+
+    right: -70px;
+    top: -80px;
+
+    background: var(--green);
+
+    border-radius: 50%;
+
+    opacity: 0.9;
+
+    transition:
+        transform 0.6s ease;
+}
+
+.hero-card:hover::after {
+    transform: scale(1.08);
+}
+
+.hero-card h1 {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 650px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size:
+        clamp(
+            2rem,
+            4vw,
+            3.5rem
+        );
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+}
+
+.hero-card p {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 550px;
+
+    margin-top: 18px;
+
+    color: #bdbdbd;
+
+    line-height: 1.6;
+}
+
+.hero-emoji {
+    position: absolute;
+
+    right: 35px;
+    bottom: 20px;
+
+    z-index: 2;
+
+    font-size: 5rem;
+
+    transform: rotate(-8deg);
+
+    transition:
+        transform 0.4s ease;
+}
+
+.hero-card:hover .hero-emoji {
+    transform:
+        rotate(5deg)
+        scale(1.08);
+}
+
+
+/* BUDDY CARD */
+
+.buddy-card {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    overflow: hidden;
+
+    padding: 30px;
+
+    color: #111;
+
+    background: var(--green);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow);
+}
+
+.buddy-card::before {
+    content: "✦";
+
+    position: absolute;
+
+    right: 25px;
+    top: 15px;
+
+    font-size: 4rem;
+
+    opacity: 0.15;
+}
+
+.buddy-card span {
+    font-size: 0.8rem;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.buddy-message {
+    max-width: 300px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 1.6rem;
+
+    font-weight: 700;
+
+    line-height: 1.15;
+}
+
+
+/* ================================
+   DASHBOARD
+================================ */
+
+.dashboard {
+    display: grid;
+
+    grid-template-columns:
+        1.1fr
+        1fr
+        1fr;
+
+    gap: 18px;
+}
+
+.wide {
+    grid-column: span 2;
+}
+
+
+/* ================================
+   CARDS
+================================ */
+
+.card {
+    padding: 25px;
+
+    background: var(--card);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.7);
+
+    border-radius: var(--radius-md);
+
+    backdrop-filter: blur(14px);
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.08);
+}
+
+
+/* CARD HEADER */
+
+.card-title {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 22px;
+}
+
+.card-title h2 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 1.05rem;
+
+    font-weight: 700;
+}
+
+
+/* TAG */
+
+.tag {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 6px 10px;
+
+    color: #222;
+
+    background: #eeeeee;
+
+    border-radius: 20px;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* ================================
+   MONEY
+================================ */
+
+.money {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 2.6rem;
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+}
+
+.money-sub {
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 0.9rem;
+}
+
+
+/* ================================
+   PROGRESS BAR
+================================ */
+
+.progress {
+    height: 13px;
+
+    margin:
+        20px
+        0
+        10px;
+
+    overflow: hidden;
+
+    background: #e9e9e4;
+
+    border-radius: 50px;
+}
+
+.progress-bar {
+    width: 0%;
+
+    height: 100%;
+
+    background: var(--black);
+
+    border-radius: inherit;
+
+    transition:
+        width 0.6s ease,
+        background 0.3s ease;
+}
+
+.budget-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    color: var(--muted);
+
+    font-size: 0.85rem;
+}
+
+
+/* ================================
+   TRANSACTIONS
+================================ */
+
+.transactions {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    max-height: 330px;
+
+    overflow-y: auto;
+
+    padding-right: 4px;
+}
+
+
+/* SCROLLBAR */
+
+.transactions::-webkit-scrollbar {
+    width: 5px;
+}
+
+.transactions::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.transactions::-webkit-scrollbar-thumb {
+    background: #cccccc;
+
+    border-radius: 10px;
+}
+
+
+/* TRANSACTION */
+
+.transaction {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 12px;
+
+    background: var(--soft);
+
+    border-radius: 15px;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.transaction:hover {
+    transform: translateX(3px);
+
+    background: #eeeeea;
+}
+
+.transaction-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 0;
+}
+
+
+/* TRANSACTION ICON */
+
+.transaction-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 13px;
+
+    font-size: 1.2rem;
+}
+
+
+/* TRANSACTION TEXT */
+
+.transaction-name {
+    max-width: 220px;
+
+    overflow: hidden;
+
+    font-size: 0.9rem;
+
+    font-weight: 700;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.transaction-category {
+    margin-top: 2px;
+
+    color: var(--muted);
+
+    font-size: 0.75rem;
+}
+
+
+/* AMOUNT */
+
+.amount {
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* DELETE */
+
+.delete {
+    margin-left: 8px;
+
+    color: #aaa;
+
+    background: transparent;
+
+    border: none;
+
+    font-size: 1rem;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.delete:hover {
+    color: #f33;
+
+    transform: scale(1.2);
+}
+
+
+/* ================================
+   BUTTONS
+================================ */
+
+.primary {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    color: white;
+
+    background: var(--black);
+
+    border: none;
+
+    border-radius: var(--radius-sm);
+
+    font-weight: 700;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.primary:hover {
+    transform: translateY(-2px);
+
+    background: #333333;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.primary:active {
+    transform: translateY(0);
+}
+
+
+/* ================================
+   FORMS
+================================ */
+
+.form {
+    display: grid;
+
+    gap: 12px;
+}
+
+.input-group {
+    display: grid;
+
+    gap: 6px;
+}
+
+label {
+    color: #666;
+
+    font-size: 0.78rem;
+
+    font-weight: 700;
+}
+
+input,
+select {
+    width: 100%;
+
+    padding:
+        13px
+        14px;
+
+    color: var(--text);
+
+    background: #fafaf8;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 13px;
+
+    transition:
+        border 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #111;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(183, 243, 74, 0.2);
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+
+/* ================================
+   AFFORD CHECKER
+================================ */
+
+.checker {
+    display: flex;
+
+    gap: 8px;
+}
+
+.checker input {
+    flex: 1;
+}
+
+.checker button {
+    padding:
+        0
+        18px;
+
+    color: #111;
+
+    background: var(--purple);
+
+    border: none;
+
+    border-radius: 13px;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.checker button:hover {
+    transform: translateY(-2px);
+}
+
+
+/* RESULT */
+
+.checker-result {
+    display: none;
+
+    margin-top: 15px;
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+
+    animation:
+        resultPop 0.25s ease;
+}
+
+@keyframes resultPop {
+
+    from {
+        opacity: 0;
+
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+}
+
+.safe {
+    color: #245400;
+
+    background: #dcffc0;
+}
+
+.danger {
+    color: #7c0000;
+
+    background: #ffc8c8;
+}
+
+
+/* ================================
+   SAVINGS GOAL
+================================ */
+
+.goal {
+    padding: 15px;
+
+    background: var(--blue);
+
+    border-radius: 18px;
+}
+
+.goal-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+
+    font-weight: 700;
+}
+
+.goal-bar {
+    height: 9px;
+
+    overflow: hidden;
+
+    background:
+        rgba(0, 0, 0, 0.1);
+
+    border-radius: 10px;
+}
+
+.goal-fill {
+    width: 0%;
+
+    height: 100%;
+
+    background: #111;
+
+    border-radius: inherit;
+
+    transition:
+        width 0.6s ease;
+}
+
+
+/* ================================
+   STATISTICS
+================================ */
+
+.stat-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+}
+
+.stat {
+    padding: 17px;
+
+    background: var(--soft);
+
+    border-radius: 18px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.stat:hover {
+    transform: translateY(-2px);
+}
+
+.stat span {
+    color: var(--muted);
+
+    font-size: 0.75rem;
+}
+
+.stat strong {
+    display: block;
+
+    margin-top: 5px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 1.5rem;
+}
+
+
+/* ================================
+   MODAL
+================================ */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: none;
+
+    place-items: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0, 0, 0, 0.45);
+
+    backdrop-filter: blur(5px);
+}
+
+.modal.show {
+    display: grid;
+}
+
+.modal-box {
+    width: min(430px, 100%);
+
+    padding: 25px;
+
+    background: var(--card-solid);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.2);
+
+    animation:
+        pop 0.25s ease;
+}
+
+@keyframes pop {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.9)
+            translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    font-family: "Space Grotesk", sans-serif;
+}
+
+.close {
+    width: 35px;
+    height: 35px;
+
+    display: grid;
+
+    place-items: center;
+
+    color: #222;
+
+    background: #eeeeee;
+
+    border: none;
+
+    border-radius: 50%;
+
+    font-size: 1.2rem;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.close:hover {
+    transform: rotate(90deg);
+}
+
+
+/* ================================
+   TOAST
+================================ */
+
+.toast {
+    position: fixed;
+
+    right: 20px;
+    bottom: 20px;
+
+    z-index: 200;
+
+    max-width: 320px;
+
+    padding:
+        14px
+        18px;
+
+    color: white;
+
+    background: var(--black);
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.2);
+
+    transform:
+        translateY(100px);
+
+    opacity: 0;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+.toast.show {
+    transform:
+        translateY(0);
+
+    opacity: 1;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+    margin-top: 30px;
+
+    color: #888;
+
+    font-size: 0.8rem;
+
+    text-align: center;
+}
+
+
+/* ================================
+   DARK MODE
+================================ */
+
+body.dark {
+    --bg: #101010;
+
+    --card: rgba(30, 30, 30, 0.88);
+
+    --card-solid: #1c1c1c;
+
+    --text: #f5f5f5;
+
+    --muted: #aaaaaa;
+
+    --border: #333333;
+
+    --soft: #242424;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            #1c2912 0,
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            #21182f 0,
+            transparent 25%
+        ),
+        #101010;
+}
+
+body.dark .icon-btn {
+    color: white;
+
+    background: #222;
+
+    border-color: #333;
+}
+
+body.dark .icon-btn:hover {
+    background: #2d2d2d;
+}
+
+body.dark input,
+body.dark select {
+    color: white;
+
+    background: #222;
+
+    border-color: #3a3a3a;
+}
+
+body.dark input::placeholder {
+    color: #777;
+}
+
+body.dark label {
+    color: #aaa;
+}
+
+body.dark .tag {
+    color: #111;
+
+    background: var(--green);
+}
+
+body.dark .transaction:hover {
+    background: #2b2b2b;
+}
+
+body.dark .close {
+    color: white;
+
+    background: #333;
+}
+
+body.dark .progress {
+    background: #333;
+}
+
+body.dark .checker-result.safe {
+    color: #d9ffbd;
+
+    background: #203516;
+}
+
+body.dark .checker-result.danger {
+    color: #ffbcbc;
+
+    background: #421d1d;
+}
+
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 1000px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .wide {
+        grid-column: span 2;
+    }
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 650px) {
+
+    .app {
+        width: 92%;
+
+        padding-top: 18px;
+    }
+
+    nav {
+        margin-bottom: 22px;
+    }
+
+    .logo {
+        font-size: 1.15rem;
+    }
+
+    .logo-icon {
+        width: 38px;
+        height: 38px;
+
+        border-radius: 11px;
+    }
+
+    .hero {
+        gap: 15px;
+    }
+
+    .hero-card,
+    .buddy-card,
+    .card {
+        border-radius: 20px;
+    }
+
+    .hero-card {
+        min-height: 275px;
+
+        padding: 24px;
+    }
+
+    .hero-card h1 {
+        font-size: 2.25rem;
+
+        letter-spacing: -1.5px;
+    }
+
+    .hero-card p {
+        max-width: 90%;
+    }
+
+    .hero-emoji {
+        right: 20px;
+
+        font-size: 4rem;
+    }
+
+    .buddy-card {
+        min-height: 190px;
+
+        padding: 22px;
+    }
+
+    .buddy-message {
+        font-size: 1.4rem;
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+    .wide {
+        grid-column: span 1;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .money {
+        font-size: 2.2rem;
+    }
+
+    .transaction-name {
+        max-width: 140px;
+    }
+
+    .checker {
+        flex-direction: column;
+    }
+
+    .checker button {
+        min-height: 45px;
+    }
+
+    .stat strong {
+        font-size: 1.3rem;
+    }
+
+    .toast {
+        right: 15px;
+        bottom: 15px;
+        left: 15px;
+
+        max-width: none;
+
+        text-align: center;
+    }
+}
+
+
+/* ================================
+   SMALL PHONES
+================================ */
+
+@media (max-width: 380px) {
+
+    .hero-card h1 {
+        font-size: 1.9rem;
+    }
+
+    .money {
+        font-size: 2rem;
+    }
+
+    .stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-right {
+        gap: 6px;
+    }
+
+    .icon-btn {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+
+/* ================================
+   ACCESSIBILITY
+================================ */
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline:
+        3px solid
+        rgba(183, 243, 74, 0.8);
+
+    outline-offset: 2px;
+}
+
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        transition: none !important;
+
+        animation: none !important;
+    }
+}

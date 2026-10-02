@@ -1,0 +1,1746 @@
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/style.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Broke Buddy 💸</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+        :root {
+            --bg: #f5f5f2;
+            --card: rgba(255,255,255,.78);
+            --text: #171717;
+            --muted: #777;
+            --border: #e8e8e3;
+            --green: #b7f34a;
+            --green-dark: #78a928;
+            --purple: #d8c7ff;
+            --pink: #ffc9dd;
+            --blue: #c8e8ff;
+            --orange: #ffd49b;
+            --red: #ffb5b5;
+            --shadow: 0 15px 45px rgba(0,0,0,.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, #e9ffd0 0, transparent 25%),
+                radial-gradient(circle at 90% 20%, #e7dbff 0, transparent 25%),
+                var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .app {
+            width: min(1400px, 94%);
+            margin: auto;
+            padding: 25px 0 50px;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            background: var(--green);
+            border-radius: 13px;
+            font-size: 1.35rem;
+            box-shadow: 5px 5px 0 #222;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .icon-btn {
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.7);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            transition: .2s;
+        }
+
+        .icon-btn:hover {
+            transform: rotate(8deg) scale(1.05);
+        }
+
+        /* HERO */
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.4fr .8fr;
+            gap: 22px;
+            margin-bottom: 22px;
+        }
+
+        .hero-card {
+            background: #171717;
+            color: white;
+            border-radius: 30px;
+            padding: 35px;
+            position: relative;
+            overflow: hidden;
+            min-height: 250px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-card::after {
+            content: "";
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            background: var(--green);
+            border-radius: 50%;
+            right: -70px;
+            top: -80px;
+            opacity: .9;
+        }
+
+        .hero-card h1 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            max-width: 650px;
+            line-height: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-card p {
+            margin-top: 18px;
+            color: #bdbdbd;
+            max-width: 550px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-emoji {
+            position: absolute;
+            right: 35px;
+            bottom: 20px;
+            font-size: 5rem;
+            z-index: 2;
+            transform: rotate(-8deg);
+        }
+
+        .buddy-card {
+            background: var(--green);
+            color: #111;
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .buddy-card span {
+            font-size: .8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .buddy-message {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        /* GRID */
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr 1fr;
+            gap: 18px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,.7);
+            backdrop-filter: blur(14px);
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .wide {
+            grid-column: span 2;
+        }
+
+        .card-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .card-title h2 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.05rem;
+        }
+
+        .tag {
+            padding: 6px 10px;
+            border-radius: 20px;
+            background: #eee;
+            font-size: .75rem;
+            font-weight: 700;
+        }
+
+        /* MONEY */
+
+        .money {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+        }
+
+        .money-sub {
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        .progress {
+            height: 13px;
+            background: #e9e9e4;
+            border-radius: 50px;
+            margin: 20px 0 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #171717;
+            border-radius: inherit;
+            transition: width .5s ease;
+        }
+
+        .budget-row {
+            display: flex;
+            justify-content: space-between;
+            color: var(--muted);
+            font-size: .85rem;
+        }
+
+        /* TRANSACTIONS */
+
+        .transactions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 330px;
+            overflow-y: auto;
+        }
+
+        .transaction {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            border-radius: 15px;
+            background: #f7f7f4;
+        }
+
+        .transaction-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .transaction-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            font-size: 1.2rem;
+        }
+
+        .transaction-name {
+            font-weight: 700;
+            font-size: .9rem;
+        }
+
+        .transaction-category {
+            color: var(--muted);
+            font-size: .75rem;
+        }
+
+        .amount {
+            font-weight: 700;
+        }
+
+        .delete {
+            border: none;
+            background: transparent;
+            color: #aaa;
+            margin-left: 8px;
+        }
+
+        .delete:hover {
+            color: #f33;
+        }
+
+        /* BUTTON */
+
+        .primary {
+            width: 100%;
+            border: none;
+            padding: 14px;
+            background: #171717;
+            color: white;
+            border-radius: 14px;
+            font-weight: 700;
+            transition: .2s;
+        }
+
+        .primary:hover {
+            transform: translateY(-2px);
+            background: #333;
+        }
+
+        /* FORM */
+
+        .form {
+            display: grid;
+            gap: 12px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px 14px;
+            border-radius: 13px;
+            border: 1px solid var(--border);
+            background: #fafaf8;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #111;
+        }
+
+        label {
+            font-size: .78rem;
+            font-weight: 700;
+            color: #666;
+        }
+
+        .input-group {
+            display: grid;
+            gap: 6px;
+        }
+
+        /* CHECKER */
+
+        .checker {
+            display: flex;
+            gap: 8px;
+        }
+
+        .checker input {
+            flex: 1;
+        }
+
+        .checker button {
+            border: none;
+            background: var(--purple);
+            border-radius: 13px;
+            padding: 0 18px;
+            font-weight: 700;
+        }
+
+        .checker-result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 15px;
+            display: none;
+            font-weight: 700;
+        }
+
+        .safe {
+            background: #dcffc0;
+        }
+
+        .danger {
+            background: #ffc8c8;
+        }
+
+        /* GOAL */
+
+        .goal {
+            padding: 15px;
+            background: var(--blue);
+            border-radius: 18px;
+        }
+
+        .goal-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .goal-bar {
+            height: 9px;
+            background: rgba(0,0,0,.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .goal-fill {
+            height: 100%;
+            width: 0%;
+            background: #111;
+        }
+
+        /* STATS */
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 12px;
+        }
+
+        .stat {
+            padding: 17px;
+            border-radius: 18px;
+            background: #f5f5f1;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: .75rem;
+        }
+
+        .stat strong {
+            display: block;
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.5rem;
+            margin-top: 5px;
+        }
+
+        /* MODAL */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.45);
+            display: none;
+            place-items: center;
+            z-index: 100;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: grid;
+        }
+
+        .modal-box {
+            width: min(430px,100%);
+            background: #fff;
+            border-radius: 25px;
+            padding: 25px;
+            animation: pop .25s ease;
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close {
+            border: none;
+            background: #eee;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+
+        /* TOAST */
+
+        .toast {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #171717;
+            color: white;
+            padding: 14px 18px;
+            border-radius: 14px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: .3s;
+            z-index: 200;
+            max-width: 300px;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        footer {
+            text-align: center;
+            color: #888;
+            font-size: .8rem;
+            margin-top: 30px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .wide {
+                grid-column: span 1;
+            }
+        }
+
+        @media(max-width: 600px) {
+            .app {
+                width: 92%;
+            }
+
+            .hero-card,
+            .buddy-card,
+            .card {
+                border-radius: 20px;
+                padding: 20px;
+            }
+
+            .hero-card {
+                min-height: 270px;
+            }
+
+            .hero-emoji {
+                font-size: 4rem;
+            }
+
+            .money {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">
+            <div class="logo-icon">🪙</div>
+            Broke Buddy
+        </div>
+
+        <div class="nav-right">
+            <button class="icon-btn" onclick="toggleTheme()" title="Toggle theme">
+                🌙
+            </button>
+
+            <button class="icon-btn" onclick="openModal()" title="Add expense">
+                ＋
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-card">
+            <h1>
+                Your wallet called.<br>
+                It needs therapy.
+            </h1>
+
+            <p>
+                Track your money, survive the month and maybe stop
+                saying “I'll save next month.” 💀
+            </p>
+
+            <div class="hero-emoji">💸</div>
+        </div>
+
+        <div class="buddy-card">
+
+            <span>Today's vibe</span>
+
+            <div class="buddy-message" id="buddyMessage">
+                Loading your financial tea... ☕
+            </div>
+
+            <span id="streakText">
+                🔥 0 day spending streak
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- DASHBOARD -->
+    <section class="dashboard">
+
+        <!-- BALANCE -->
+        <div class="card">
+
+            <div class="card-title">
+                <h2>Monthly budget</h2>
+                <span class="tag">October</span>
+            </div>
+
+            <div class="money" id="remaining">
+                ₹10,000
+            </div>
+
+            <div class="money-sub">
+                left to spend
+            </div>
+
+            <div class="progress">
+                <div class="progress-bar" id="budgetBar"></div>
+            </div>
+
+            <div class="budget-row">
+                <span id="spentText">₹0 spent</span>
+                <span id="budgetText">₹10,000 budget</span>
+            </div>
+
+        </div>
+
+
+        <!-- QUICK CHECK -->
+        <div class="card">
+
+            <div class="card-title">
+                <h2>Can I afford it?</h2>
+                <span class="tag">No judgement 👀</span>
+            </div>
+
+            <div class="checker">
+
+                <input
+                    type="number"
+                    id="checkAmount"
+                    placeholder="₹ amount"
+                >
+
+                <button onclick="checkAfford()">
+                    Check
+                </button>
+
+            </div>
+
+            <div id="checkerResult" class="checker-result"></div>
+
+        </div>
+
+
+        <!-- STATS -->
+        <div class="card">
+
+            <div class="card-title">
+                <h2>Your money lore</h2>
+            </div>
+
+            <div class="stat-grid">
+
+                <div class="stat">
+                    <span>Transactions</span>
+                    <strong id="transactionCount">0</strong>
+                </div>
+
+                <div class="stat">
+                    <span>Avg. spend</span>
+                    <strong id="averageSpend">₹0</strong>
+                </div>
+
+                <div class="stat">
+                    <span>Biggest spend</span>
+                    <strong id="biggestSpend">₹0</strong>
+                </div>
+
+                <div class="stat">
+                    <span>Saved</span>
+                    <strong id="savedAmount">₹0</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TRANSACTIONS -->
+        <div class="card wide">
+
+            <div class="card-title">
+
+                <h2>Recent chaos</h2>
+
+                <button
+                    onclick="openModal()"
+                    style="
+                    border:none;
+                    background:var(--green);
+                    padding:8px 13px;
+                    border-radius:12px;
+                    font-weight:700;
+                    "
+                >
+                    + Add
+                </button>
+
+            </div>
+
+            <div class="transactions" id="transactions">
+
+                <div style="text-align:center;color:#888;padding:30px">
+                    No financial chaos yet. Suspicious. 👀
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SAVINGS GOAL -->
+        <div class="card">
+
+            <div class="card-title">
+                <h2>Side quest 🎯</h2>
+                <span class="tag">Goal</span>
+            </div>
+
+            <div class="goal">
+
+                <div class="goal-top">
+                    <span id="goalName">Emergency fund</span>
+                    <span id="goalPercent">0%</span>
+                </div>
+
+                <div class="goal-bar">
+                    <div class="goal-fill" id="goalFill"></div>
+                </div>
+
+                <p style="margin-top:10px;font-size:.8rem;color:#555">
+                    ₹<span id="goalSaved">0</span>
+                    / ₹<span id="goalTarget">5,000</span>
+                </p>
+
+            </div>
+
+            <button
+                class="primary"
+                style="margin-top:15px"
+                onclick="addToGoal()"
+            >
+                Add ₹100 to goal
+            </button>
+
+        </div>
+
+
+        <!-- BUDGET SETTING -->
+        <div class="card">
+
+            <div class="card-title">
+                <h2>Budget settings</h2>
+                <span class="tag">Control room</span>
+            </div>
+
+            <div class="form">
+
+                <div class="input-group">
+
+                    <label>Monthly budget</label>
+
+                    <input
+                        type="number"
+                        id="budgetInput"
+                        placeholder="₹10000"
+                    >
+
+                </div>
+
+                <button
+                    class="primary"
+                    onclick="saveBudget()"
+                >
+                    Update budget
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- INSIGHT -->
+        <div class="card">
+
+            <div class="card-title">
+                <h2>Buddy's tea ☕</h2>
+            </div>
+
+            <p
+                id="insight"
+                style="
+                line-height:1.6;
+                color:#555;
+                "
+            >
+                Add some expenses and I'll analyse your spending habits.
+            </p>
+
+        </div>
+
+    </section>
+
+    <footer>
+        Made for students who are financially responsible... allegedly. 💀
+    </footer>
+
+</div>
+
+
+<!-- ADD EXPENSE MODAL -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>Add expense 💸</h2>
+
+            <button
+                class="close"
+                onclick="closeModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form
+            class="form"
+            onsubmit="addExpense(event)"
+        >
+
+            <div class="input-group">
+
+                <label>What did you spend on?</label>
+
+                <input
+                    id="expenseName"
+                    placeholder="e.g. Chai with friends"
+                    required
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Amount</label>
+
+                <input
+                    id="expenseAmount"
+                    type="number"
+                    min="1"
+                    placeholder="₹"
+                    required
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Category</label>
+
+                <select id="expenseCategory">
+
+                    <option value="Food">🍔 Food</option>
+                    <option value="Travel">🚕 Travel</option>
+                    <option value="Shopping">🛍️ Shopping</option>
+                    <option value="Entertainment">🎬 Entertainment</option>
+                    <option value="College">📚 College</option>
+                    <option value="Bills">📱 Bills</option>
+                    <option value="Other">✨ Other</option>
+
+                </select>
+
+            </div>
+
+            <button
+                class="primary"
+                type="submit"
+            >
+                Add expense
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+    /* =========================
+       DATA
+    ========================= */
+
+    let data = JSON.parse(
+        localStorage.getItem("brokeBuddyData")
+    ) || {
+
+        budget: 10000,
+
+        expenses: [],
+
+        goal: {
+            name: "Emergency fund",
+            target: 5000,
+            saved: 0
+        },
+
+        dark: false
+
+    };
+
+
+    /* =========================
+       SAVE DATA
+    ========================= */
+
+    function saveData() {
+
+        localStorage.setItem(
+            "brokeBuddyData",
+            JSON.stringify(data)
+        );
+
+    }
+
+
+    /* =========================
+       FORMAT MONEY
+    ========================= */
+
+    function money(amount) {
+
+        return "₹" + Number(amount).toLocaleString("en-IN");
+
+    }
+
+
+    /* =========================
+       UPDATE DASHBOARD
+    ========================= */
+
+    function updateDashboard() {
+
+        const total = data.expenses.reduce(
+            (sum, expense) => sum + Number(expense.amount),
+            0
+        );
+
+        const remaining =
+            data.budget - total;
+
+        const percentage =
+            data.budget > 0
+            ? Math.min((total / data.budget) * 100, 100)
+            : 0;
+
+
+        document.getElementById("remaining")
+            .textContent = money(Math.max(remaining, 0));
+
+        document.getElementById("spentText")
+            .textContent = money(total) + " spent";
+
+        document.getElementById("budgetText")
+            .textContent = money(data.budget) + " budget";
+
+        document.getElementById("budgetBar")
+            .style.width = percentage + "%";
+
+
+        if (percentage >= 90) {
+
+            document.getElementById("budgetBar")
+                .style.background = "#ff5c5c";
+
+        } else if (percentage >= 70) {
+
+            document.getElementById("budgetBar")
+                .style.background = "#ffb347";
+
+        } else {
+
+            document.getElementById("budgetBar")
+                .style.background = "#171717";
+
+        }
+
+
+        updateStats(total);
+
+        renderTransactions();
+
+        updateGoal();
+
+        updateInsight(total);
+
+        updateBuddy(total, remaining);
+
+    }
+
+
+    /* =========================
+       STATS
+    ========================= */
+
+    function updateStats(total) {
+
+        const count =
+            data.expenses.length;
+
+        const average =
+            count
+            ? total / count
+            : 0;
+
+        const biggest =
+            count
+            ? Math.max(
+                ...data.expenses.map(
+                    e => Number(e.amount)
+                )
+            )
+            : 0;
+
+
+        document.getElementById("transactionCount")
+            .textContent = count;
+
+        document.getElementById("averageSpend")
+            .textContent = money(
+                Math.round(average)
+            );
+
+        document.getElementById("biggestSpend")
+            .textContent = money(biggest);
+
+        document.getElementById("savedAmount")
+            .textContent = money(
+                Math.max(data.budget - total, 0)
+            );
+
+    }
+
+
+    /* =========================
+       TRANSACTIONS
+    ========================= */
+
+    function renderTransactions() {
+
+        const container =
+            document.getElementById("transactions");
+
+
+        if (!data.expenses.length) {
+
+            container.innerHTML = `
+                <div style="
+                    text-align:center;
+                    color:#888;
+                    padding:30px
+                ">
+                    No financial chaos yet. Suspicious. 👀
+                </div>
+            `;
+
+            return;
+        }
+
+
+        container.innerHTML =
+            data.expenses
+            .slice()
+            .reverse()
+            .map((expense, index) => {
+
+                const actualIndex =
+                    data.expenses.length - 1 - index;
+
+                const icons = {
+
+                    Food: ["🍔", "#ffd9a8"],
+                    Travel: ["🚕", "#c8e8ff"],
+                    Shopping: ["🛍️", "#ffc9dd"],
+                    Entertainment: ["🎬", "#d8c7ff"],
+                    College: ["📚", "#d5f5a3"],
+                    Bills: ["📱", "#ddd"],
+                    Other: ["✨", "#eee"]
+
+                };
+
+                const icon =
+                    icons[expense.category] || icons.Other;
+
+
+                return `
+
+                    <div class="transaction">
+
+                        <div class="transaction-left">
+
+                            <div
+                                class="transaction-icon"
+                                style="background:${icon[1]}"
+                            >
+                                ${icon[0]}
+                            </div>
+
+                            <div>
+
+                                <div class="transaction-name">
+                                    ${escapeHTML(expense.name)}
+                                </div>
+
+                                <div class="transaction-category">
+                                    ${expense.category}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <span class="amount">
+                                -${money(expense.amount)}
+                            </span>
+
+                            <button
+                                class="delete"
+                                onclick="deleteExpense(${actualIndex})"
+                            >
+                                ×
+                            </button>
+
+                        </div>
+
+                    </div>
+                `;
+
+            })
+            .join("");
+
+    }
+
+
+    /* =========================
+       ADD EXPENSE
+    ========================= */
+
+    function addExpense(event) {
+
+        event.preventDefault();
+
+
+        const name =
+            document.getElementById("expenseName").value;
+
+        const amount =
+            Number(
+                document.getElementById("expenseAmount").value
+            );
+
+        const category =
+            document.getElementById("expenseCategory").value;
+
+
+        data.expenses.push({
+
+            name,
+            amount,
+            category,
+            date: new Date().toISOString()
+
+        });
+
+
+        saveData();
+
+        updateDashboard();
+
+        closeModal();
+
+        document.querySelector("form").reset();
+
+        showToast(
+            "Expense added. Your wallet felt that. 💀"
+        );
+
+    }
+
+
+    /* =========================
+       DELETE
+    ========================= */
+
+    function deleteExpense(index) {
+
+        data.expenses.splice(index, 1);
+
+        saveData();
+
+        updateDashboard();
+
+        showToast("Expense deleted. Financial damage reduced. ✨");
+
+    }
+
+
+    /* =========================
+       AFFORD CHECKER
+    ========================= */
+
+    function checkAfford() {
+
+        const amount =
+            Number(
+                document.getElementById("checkAmount").value
+            );
+
+        const result =
+            document.getElementById("checkerResult");
+
+
+        if (!amount || amount <= 0) {
+
+            result.style.display = "block";
+
+            result.className =
+                "checker-result danger";
+
+            result.textContent =
+                "Bestie... enter an actual amount 😭";
+
+            return;
+        }
+
+
+        const total =
+            data.expenses.reduce(
+                (sum, expense) =>
+                    sum + Number(expense.amount),
+                0
+            );
+
+
+        const remaining =
+            data.budget - total;
+
+
+        result.style.display = "block";
+
+
+        if (amount <= remaining * .15) {
+
+            result.className =
+                "checker-result safe";
+
+            result.textContent =
+                "Lowkey yes. Your wallet can handle this. 🟢";
+
+        }
+
+        else if (amount <= remaining * .3) {
+
+            result.className =
+                "checker-result safe";
+
+            result.textContent =
+                "Hmm... doable, but don't make this a habit. 👀";
+
+        }
+
+        else {
+
+            result.className =
+                "checker-result danger";
+
+            result.textContent =
+                "Bestie, respectfully... PUT IT BACK. 💀";
+
+        }
+
+    }
+
+
+    /* =========================
+       GOAL
+    ========================= */
+
+    function updateGoal() {
+
+        const percent =
+            Math.min(
+                (data.goal.saved / data.goal.target) * 100,
+                100
+            );
+
+
+        document.getElementById("goalName")
+            .textContent = data.goal.name;
+
+        document.getElementById("goalSaved")
+            .textContent = data.goal.saved.toLocaleString("en-IN");
+
+        document.getElementById("goalTarget")
+            .textContent = data.goal.target.toLocaleString("en-IN");
+
+        document.getElementById("goalPercent")
+            .textContent = Math.round(percent) + "%";
+
+        document.getElementById("goalFill")
+            .style.width = percent + "%";
+
+    }
+
+
+    function addToGoal() {
+
+        data.goal.saved =
+            Math.min(
+                data.goal.saved + 100,
+                data.goal.target
+            );
+
+
+        saveData();
+
+        updateDashboard();
+
+        showToast(
+            "₹100 saved. Main character behaviour. 🫡"
+        );
+
+    }
+
+
+    /* =========================
+       BUDGET
+    ========================= */
+
+    function saveBudget() {
+
+        const input =
+            Number(
+                document.getElementById("budgetInput").value
+            );
+
+
+        if (!input || input <= 0) {
+
+            showToast("Enter a valid budget 😭");
+
+            return;
+
+        }
+
+
+        data.budget = input;
+
+        saveData();
+
+        updateDashboard();
+
+        document.getElementById("budgetInput")
+            .value = "";
+
+        showToast(
+            "Budget updated. Financial era unlocked. ✨"
+        );
+
+    }
+
+
+    /* =========================
+       INSIGHTS
+    ========================= */
+
+    function updateInsight(total) {
+
+        const insight =
+            document.getElementById("insight");
+
+
+        if (!data.expenses.length) {
+
+            insight.textContent =
+                "Add some expenses and I'll analyse your spending habits.";
+
+            return;
+
+        }
+
+
+        const categoryTotals = {};
+
+
+        data.expenses.forEach(expense => {
+
+            categoryTotals[expense.category] =
+                (categoryTotals[expense.category] || 0)
+                + Number(expense.amount);
+
+        });
+
+
+        const biggestCategory =
+            Object.entries(categoryTotals)
+            .sort((a,b) => b[1] - a[1])[0];
+
+
+        const percentage =
+            data.budget
+            ? Math.round(
+                (total / data.budget) * 100
+            )
+            : 0;
+
+
+        insight.innerHTML =
+            `You've used <strong>${percentage}%</strong> of your budget.
+            Your biggest money sink is
+            <strong>${biggestCategory[0]}</strong>
+            at <strong>${money(biggestCategory[1])}</strong>.
+            `;
+
+    }
+
+
+    /* =========================
+       BUDDY PERSONALITY
+    ========================= */
+
+    function updateBuddy(total, remaining) {
+
+        const message =
+            document.getElementById("buddyMessage");
+
+
+        if (total === 0) {
+
+            message.textContent =
+                "No spending yet. We love this era. 🧘";
+
+            return;
+
+        }
+
+
+        const percentage =
+            (total / data.budget) * 100;
+
+
+        if (percentage < 30) {
+
+            message.textContent =
+                "You're actually cooking. 🔥";
+
+        }
+
+        else if (percentage < 60) {
+
+            message.textContent =
+                "We're chilling... for now. 😌";
+
+        }
+
+        else if (percentage < 80) {
+
+            message.textContent =
+                "Okay bestie, maybe chill with the swipes. 👀";
+
+        }
+
+        else if (percentage < 100) {
+
+            message.textContent =
+                "The budget is giving emergency meeting. 🚨";
+
+        }
+
+        else {
+
+            message.textContent =
+                "Financially? We're in the trenches. 💀";
+
+        }
+
+
+        const days =
+            Math.min(
+                data.expenses.length,
+                7
+            );
+
+
+        document.getElementById("streakText")
+            .textContent =
+            `🔥 ${days} day spending streak`;
+
+    }
+
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    function openModal() {
+
+        document
+            .getElementById("modal")
+            .classList.add("show");
+
+    }
+
+
+    function closeModal() {
+
+        document
+            .getElementById("modal")
+            .classList.remove("show");
+
+    }
+
+
+    /* =========================
+       TOAST
+    ========================= */
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById("toast");
+
+
+        toast.textContent = message;
+
+        toast.classList.add("show");
+
+
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        }, 2500);
+
+    }
+
+
+    /* =========================
+       THEME
+    ========================= */
+
+    function toggleTheme() {
+
+        data.dark = !data.dark;
+
+        saveData();
+
+        applyTheme();
+
+    }
+
+
+    function applyTheme() {
+
+        if (data.dark) {
+
+            document.documentElement.style.setProperty(
+                "--bg",
+                "#111111"
+            );
+
+            document.documentElement.style.setProperty(
+                "--card",
+                "rgba(30,30,30,.85)"
+            );
+
+            document.documentElement.style.setProperty(
+                "--text",
+                "#f5f5f5"
+            );
+
+            document.documentElement.style.setProperty(
+                "--muted",
+                "#aaa"
+            );
+
+            document.documentElement.style.setProperty(
+                "--border",
+                "#333"
+            );
+
+            document.body.style.background =
+                "#111";
+
+        }
+
+        else {
+
+            document.documentElement.style.setProperty(
+                "--bg",
+                "#f5f5f2"
+            );
+
+            document.documentElement.style.setProperty(
+                "--card",
+                "rgba(255,255,255,.78)"
+            );
+
+            document.documentElement.style.setProperty(
+                "--text",
+                "#171717"
+            );
+
+            document.documentElement.style.setProperty(
+                "--muted",
+                "#777"
+            );
+
+            document.documentElement.style.setProperty(
+                "--border",
+                "#e8e8e3"
+            );
+
+            document.body.style.background =
+                "";
+
+        }
+
+    }
+
+
+    /* =========================
+       SECURITY
+    ========================= */
+
+    function escapeHTML(text) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent = text;
+
+        return div.innerHTML;
+
+    }
+
+
+    /* =========================
+       CLOSE MODAL ON BACKDROP
+    ========================= */
+
+    document
+        .getElementById("modal")
+        .addEventListener("click", function(event) {
+
+            if (event.target === this) {
+
+                closeModal();
+
+            }
+
+        });
+
+
+    /* =========================
+       START APP
+    ========================= */
+
+    applyTheme();
+
+    updateDashboard();
+
+</script>
+<script src="js/app.js"></script>
+</body>
+</html>
